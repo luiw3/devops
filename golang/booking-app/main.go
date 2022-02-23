@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -15,6 +16,7 @@ func main() {
 	fmt.Printf("We have a total of %v tickets and %v are still available\n", conferenceTickets, remainingTickets)
 	fmt.Println("Get your tickets here!")
 
+	// naviganteAndCreateDirectory()
 	for {
 		var firstName string
 		var lastName string
@@ -52,6 +54,8 @@ func main() {
 		}
 
 		fmt.Printf("These are our bookings: %v \n", firstNames)
+		dir, _ := os.UserHomeDir()
+		os.WriteFile(dir+"/Desktop/devops-study/go-created-directory/bookings.txt", []byte(firstNames[0]), 0777)
 		noTicketsRemaining := remainingTickets == 0
 		if noTicketsRemaining {
 			fmt.Println("SOLD OUT")
@@ -60,3 +64,11 @@ func main() {
 	}
 
 }
+
+// func naviganteAndCreateDirectory() {
+// 	err := os.Mkdir("/home/luisdev/Desktop/devops-study/go-created-directori/test", 0777)
+
+// 	if err != nil {
+// 		fmt.Printf("%v", err)
+// 	}
+// }
